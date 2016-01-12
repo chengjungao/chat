@@ -7,5 +7,8 @@ import com.chengjungao.chat.security.entity.sys_user;
 
 
 public interface SysUserService {  	
+	
 	public sys_user queryLogin(sys_user sys_user);
+	
+	public int addUser(sys_user sys_user);
 }  

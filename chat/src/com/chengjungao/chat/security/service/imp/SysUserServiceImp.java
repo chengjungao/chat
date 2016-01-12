@@ -16,4 +16,7 @@ public class SysUserServiceImp implements SysUserService{
 		return userDao.queryLogin(sys_user);
 		
 	}
+	public int addUser(sys_user user){
+	  return userDao.add(user);
+	}
 }

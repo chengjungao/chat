@@ -1,6 +1,8 @@
 
 package com.chengjungao.chat.security.entity;
 
+import java.sql.Date;
+
 import com.chengjungao.chat.base.baseEntity;
 
 
@@ -10,25 +12,41 @@ import com.chengjungao.chat.base.baseEntity;
  */
 public class sys_user extends baseEntity{
 	
+	/**  */
 	private String id;
-	/** 用户id */
+	/** 用户名 */
 	private String userid;
+	/** 用户名称 */
+	private String username;
 	/** 密码 */
 	private String password;
-	/** 用户名 */
-	private String username;
-	/** 用户类别 */
+	/** 用户类型 */
 	private String category;
-	/** 用户部门 */
-	private String dept;
-	/** 角色id */
+	/** 部门 */
+	private String deptid;
+	/** 角色 */
 	private String roleid;
-	/** 锁定 0-锁定 1-未锁定 */
-	private String lock_flag;
 	/** 备注 */
 	private String remark;
+	/** 创建日期 */
+	private Date createdata;
+	/**  */
+	private String lock_flag;
 	
+
+	/**
+	 * @return the id
+	 */
 	
+	public String getId() {
+		return id;
+	}
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(String id) {
+		this.id = id;
+	}
 	/**
 	 * @return the userid
 	 */
@@ -41,13 +59,6 @@ public class sys_user extends baseEntity{
 	 */
 	public void setUserid(String userid) {
 		this.userid = userid;
-	}
-	
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
 	}
 	/**
 	 * @return the username
@@ -63,6 +74,19 @@ public class sys_user extends baseEntity{
 		this.username = username;
 	}
 	/**
+	 * @return the password
+	 */
+	
+	public String getPassword() {
+		return password;
+	}
+	/**
+	 * @param password the password to set
+	 */
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	/**
 	 * @return the category
 	 */
 	
@@ -76,17 +100,17 @@ public class sys_user extends baseEntity{
 		this.category = category;
 	}
 	/**
-	 * @return the dept
+	 * @return the deptid
 	 */
 	
-	public String getDept() {
-		return dept;
+	public String getDeptid() {
+		return deptid;
 	}
 	/**
-	 * @param dept the dept to set
+	 * @param deptid the deptid to set
 	 */
-	public void setDept(String dept) {
-		this.dept = dept;
+	public void setDeptid(String deptid) {
+		this.deptid = deptid;
 	}
 	/**
 	 * @return the roleid
@@ -102,19 +126,6 @@ public class sys_user extends baseEntity{
 		this.roleid = roleid;
 	}
 	/**
-	 * @return the lock
-	 */
-	
-	public String getLock_flag() {
-		return lock_flag;
-	}
-	/**
-	 * @param lock the lock to set
-	 */
-	public void setLock_flag(String lock_flag) {
-		this.lock_flag = lock_flag;
-	}
-	/**
 	 * @return the remark
 	 */
 	
@@ -127,16 +138,34 @@ public class sys_user extends baseEntity{
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
-	public String getId() {
-		return id;
+	/**
+	 * @return the createdata
+	 */
+	
+	public Date getCreatedata() {
+		return createdata;
 	}
-	public void setId(String id) {
-		this.id = id;
+	/**
+	 * @param createdata the createdata to set
+	 */
+	public void setCreatedata(Date createdata) {
+		this.createdata = createdata;
+	}
+	/**
+	 * @return the lock_flag
+	 */
+	
+	public String getLock_flag() {
+		return lock_flag;
+	}
+	/**
+	 * @param lock_flag the lock_flag to set
+	 */
+	public void setLock_flag(String lock_flag) {
+		this.lock_flag = lock_flag;
 	}
 	
 	
-	
-
 	
 
 	

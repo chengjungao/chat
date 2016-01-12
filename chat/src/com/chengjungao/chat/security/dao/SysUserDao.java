@@ -19,5 +19,6 @@ public interface SysUserDao<T> extends baseDao<T> {
 	 */
 	public T queryLogin(sys_user model);
 	
+	public  int add(sys_user model);
 	
 }
