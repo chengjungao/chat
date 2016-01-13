@@ -13,7 +13,7 @@ import com.chengjungao.chat.base.baseEntity;
 public class sys_user extends baseEntity{
 	
 	/**  */
-	private String id;
+	private int id;
 	/** 用户名 */
 	private String userid;
 	/** 用户名称 */
@@ -38,13 +38,13 @@ public class sys_user extends baseEntity{
 	 * @return the id
 	 */
 	
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 	/**
 	 * @param id the id to set
 	 */
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	/**

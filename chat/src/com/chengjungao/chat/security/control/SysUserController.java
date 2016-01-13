@@ -20,6 +20,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -44,7 +45,9 @@ public class SysUserController {
 	    return "success";
 	}
 	@RequestMapping(value="/adduser.do",method= RequestMethod.POST)
-	public void adduser(sys_user user,HttpServletRequest request,HttpServletResponse response,Model model){
+	@ResponseBody
+	public String adduser(sys_user user,HttpServletRequest request,HttpServletResponse response,Model model){
+		user.setPassword(MD5Encrypt.encrypt(user.getPassword()));
 		int id=userService.addUser(user);
 		JSONObject  json=new JSONObject();
 		try {
@@ -54,12 +57,12 @@ public class SysUserController {
 		  e.printStackTrace();
 		  json.put("msg", "false");
 	  }
-		 try {
-		    	response.getWriter().println(json);
-			 } catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-        
+//		 try {
+//		    	response.getWriter().println(json);
+//			 } catch (IOException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+        return json.toString();
 	}
 }

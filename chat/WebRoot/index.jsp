@@ -10,7 +10,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>欢迎登录程军高的管理系统</title>
 <link href="css/style.css" rel="stylesheet" type="text/css" />
-<script language="JavaScript" src="js/jquery.js"></script>
+<link href="layer/skin/layer.css" rel="stylesheet" type="text/css" />
+<script language="JavaScript" src="js/jquery-1.8.3.min.js"></script>
 <script src="js/cloud.js" type="text/javascript"></script>
 	<script src="layer/layer.js" type="text/javascript"></script>
 <script language="javascript">
@@ -27,45 +28,43 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
          shift: 0,
          title:'新增用户',
          scrollbar: false,
-         moveType: 2,
-         closeBtn: false,
+         moveType: 1,
          btn: ['提交', '取消'],
          yes: function(index, layero){ //或者使用btn1
               var iframe=window.frames["layui-layer-iframe"+index]; //document.getElementById("");
-              var title=iframe.document.getElementById("userid").value;
-              var content=iframe.document.getElementById("username").value;
-              var title=iframe.document.getElementById("password").value;
+              var userid=iframe.document.getElementById("userid").value;
+              var username=iframe.document.getElementById("username").value;
+              var password=iframe.document.getElementById("password").value;
              /*  var content=iframe.document.getElementById("category").value;
               var title=iframe.document.getElementById("deptid").value;
               var content=iframe.document.getElementById("roleid").value;
                var content=iframe.document.getElementById("remark").value; */
-      $.ajax({
+       $.ajax({
         url: "user/adduser.do",
         type: "post",
         data:{    
              userid:userid,
              username:username,
              password:password
-          /*    category:category,
-              deptid:deptid,
-              roleid:roleid */
+         
             },    
-        success: function(data) {
+           success: function(data) {
              if($.parseJSON(data).msg=="false"){
-               alert("系统异常！");
-             return;
+                 alert("系统异常！");
+                return;
             }
-            layer.close(index); 
-            layer.msg('注册成功，请使用本账号登录！', {offset:['300px', '400px']});
+            if($.parseJSON(data).result!=0){
+             layer.close(index); 
+             layer.msg('注册成功，请使用本账号登录！', {offset:['300px', '400px']});
+            }
            }
-         });
-            
+         }); 
          },cancel: function(index){ //或者使用btn2
            layer.close(index); 
-         },
-        // offset:['100px', '200px'],
-        // area: ['500px', '220px'],
-         shadeClose: true, //点击遮罩关闭
+         }, 
+         offset:['200px', '400px'],
+         area: ['500px', '300px'],
+        // shadeClose: true, //点击遮罩关闭
          content:'jsp/adduser.jsp'  
     });
 } 
