@@ -11,7 +11,7 @@ import com.chengjungao.chat.security.service.SysUserService;
 @Service("userServiceImpl")
 public class SysUserServiceImp implements SysUserService{
 	@Autowired
-    private SysUserDao<sys_user> userDao; 
+    private SysUserDao userDao; 
 	public sys_user queryLogin(sys_user sys_user){
 		return userDao.queryLogin(sys_user);
 		

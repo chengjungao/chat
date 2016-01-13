@@ -33,11 +33,11 @@
     <listener>  
         <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>  
     </listener>  
-     <listener>
+     <listener>  
   <listener-class>
    org.springframework.web.context.ContextLoaderListener
   </listener-class>
- </listener>   
+ </listener> 
    <!-- Spring MVC 核心过滤器 -->  
     <servlet>  
         <servlet-name>SpringMVC</servlet-name>  

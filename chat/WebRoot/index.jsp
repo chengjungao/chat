@@ -99,7 +99,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <form id="form1" action="user/login.do" method="post">
     <ul>
     <li><input name="username" type="text" class="loginuser" /></li>
-    <li><input name="password" type="text" class="loginpwd" /></li>
+    <li><input name="password" type="password" class="loginpwd" /></li>
     <li><input name="" type="submit" class="loginbtn" value="登录" />
     <label><input name="" type="checkbox" value="" checked="checked" />记住密码</label>
     <label><a href="#">忘记密码？</a></label></li>
