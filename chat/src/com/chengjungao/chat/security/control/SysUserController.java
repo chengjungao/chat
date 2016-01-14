@@ -42,7 +42,7 @@ public class SysUserController {
 		user.setPassword(MD5Encrypt.encrypt(user.getPassword()));
 		user=userService.queryLogin(user);
         model.addAttribute("user", user);
-	    return "success";
+	    return "main";
 	}
 	@RequestMapping(value="/adduser.do",method= RequestMethod.POST)
 	@ResponseBody
@@ -53,7 +53,7 @@ public class SysUserController {
 		try {
 			json.put("result", id);
 			json.put("msg", "success");
-	   } catch (Exception e) {
+	     } catch (Exception e) {
 		  e.printStackTrace();
 		  json.put("msg", "false");
 	  }
