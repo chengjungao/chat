@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chengjungao.chat.security.dao.ResourceDao" > 
+<!-- Result Map-->
+<resultMap id="BaseResultMap" type="com.chengjungao.chat.security.entity.resource" >
+	  <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="resourceid" property="resourceid" jdbcType="VARCHAR" />
+    <result column="resourcename" property="resourcename" jdbcType="VARCHAR" />
+    <result column="resourceurl" property="resourceurl" jdbcType="VARCHAR" />
+    <result column="display" property="display" jdbcType="VARCHAR" />
+    <result column="parentid" property="parentid" jdbcType="VARCHAR" /> 
+  </resultMap>
+       
+
+  <sql id="Base_Column_List" >
+    id, resourceid, resourcename,resourceurl,display ,parentid
+  </sql>
+   
+   
+<!-- 查询条件 -->
+<sql id="Where_Clause">
+where 1=1
+<trim  suffixOverrides="," >
+	<if test="id != null" >
+	    and id =  #{id}
+	</if>
+	<if test="resourceid != null" >
+	    and resourceid =  #{resourceid}
+	</if>
+	<if test="resourcename != null" >
+	    and resourcename =  #{resourcename}
+	</if>
+	<if test="resourceurl != null" >
+	    and resourceurl =  #{resourceurl}
+	</if>
+	<if test="display != null" >
+	    and display =  #{display}
+	</if>
+	<if test="parentid != null" >
+	    and parentid =  #{parentid}
+	</if>
+	
+</trim>
+</sql>
+   
+
+<!-- 插入记录 -->
+<insert id="add" parameterType="Object" >
+  insert into resource(resourceid,resourcename, resourceurl,display ,parentid)
+ values(#{resourceid},#{resourcename},#{resourceurl},#{display},#{parentid})
+ <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID() as id
+  </selectKey>
+</insert>
+
+<!-- 根据id，修改记录-->  
+ <update id="update" parameterType="Object" >
+  update resource set userid=#{userid},password=#{password},category=#{category},dept=#{dept},roleid=#{roleid},lock_flag=#{lock_flag},remark=#{remark}  where id=#{id}
+ </update>
+ 
+ <!-- 修改记录，只修改只不为空的字段 -->
+<update id="updateBySelective" parameterType="Object" >
+	update resource set 
+	<trim  suffixOverrides="," >
+	<if test="userid != null" >
+	    and userid =  #{userid}
+	</if>
+	<if test="category != null" >
+	    and category =  #{category}
+	</if>
+	<if test="dept != null" >
+	    and dept =  #{dept}
+	</if>
+	<if test="roleid != null" >
+	    and roleid =  #{roleid}
+	</if>
+	<if test="lock_flag != null" >
+	    and lock_flag =  #{lock_flag}
+	</if>
+	</trim> where id=#{id}
+</update>
+
+<!-- 删除记录 -->
+<delete id="delete" parameterType="Object">
+	delete 	 from resource where id = #{id}
+</delete>
+ 
+<!-- 根据id查询 系统用户 -->
+<select id="queryById"  resultMap="BaseResultMap" parameterType="Object">
+	select <include refid="Base_Column_List" /> 
+	 from sys_user where id = #{id}
+</select>
+
+<!-- 系统用户 列表总数-->
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="Object">
+	select count(1) from resource 
+	<include refid="Where_Clause"/>
+</select>
+  	
+<!-- 查询系统用户列表 -->
+
+  	
+<!-- 查询用户所拥有的所有资源 -->
+<select id="querylist" resultMap="BaseResultMap"  parameterType="Map">
+	select 
+	 <include refid="Base_Column_List"/>
+	from resource_role 
+	where  roleid = #{roleid}
+</select>
+</mapper>   

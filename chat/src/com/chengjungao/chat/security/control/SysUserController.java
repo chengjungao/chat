@@ -38,10 +38,11 @@ public class SysUserController {
 		this.userService = userService;
 	}	
 	@RequestMapping(value="/login.do",method= RequestMethod.POST)
-	public String login(sys_user user,Model model){
+	public String login(sys_user user,HttpServletRequest request,Model model){
 		user.setPassword(MD5Encrypt.encrypt(user.getPassword()));
 		user=userService.queryLogin(user);
         model.addAttribute("user", user);
+        request.getSession().setAttribute("user", user);
 	    return "main";
 	}
 	@RequestMapping(value="/adduser.do",method= RequestMethod.POST)
@@ -64,5 +65,11 @@ public class SysUserController {
 //				e.printStackTrace();
 //			}
         return json.toString();
+	}
+	@RequestMapping(value="/logout.do",method= RequestMethod.GET)
+	public String logout(HttpServletRequest request,Model model){
+		//sys_user user=(sys_user)request.getSession().getAttribute("user");
+        request.getSession().removeAttribute("user");
+	    return "redirect:/index.jsp";
 	}
 }
