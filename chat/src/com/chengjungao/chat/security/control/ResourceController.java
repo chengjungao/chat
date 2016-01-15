@@ -28,8 +28,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("/resource")
 public class ResourceController {
-	final int pagesize=10;
-	@Resource(name="resourceServiceImpl")
+	final int pagesize=10;             
+	@Resource(name="resourceServiceImp")
 	private ResourceService resourceService;
 	
 	public ResourceService getResourceService() {
