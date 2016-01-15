@@ -99,11 +99,16 @@ where 1=1
 	<include refid="Where_Clause"/>
 </select>
   	
-<!-- 查询系统用户列表 -->
-
+<!-- 分页查询资源 -->
+<select id="querylist" resultMap="BaseResultMap"  parameterType="Object">
+	select 
+	 <include refid="Base_Column_List"/>
+	from resource 
+	<include refid="Where_Clause"/> 
+</select>
   	
 <!-- 查询用户所拥有的所有资源 -->
-<select id="querylist" resultMap="BaseResultMap"  parameterType="Map">
+<select id="querylistbyuser" resultMap="BaseResultMap"  parameterType="Map">
 	select 
 	 <include refid="Base_Column_List"/>
 	from resource_role 

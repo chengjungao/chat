@@ -21,8 +21,8 @@ public interface ResourceDao{
 	 * 查询资源list
 	 * @return
 	 */
-	public List<resource> querylist(Map<String, String> map);
+	public List<resource> querylist(resource model);
 	
-	public  int add(sys_user model);
+	public  List<resource> querylistbyuser(Map<String, String> map);
 	
 }
